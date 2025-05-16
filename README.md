@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://github.com/user-attachments/assets/9ae61ef6-70e5-4876-bc45-5bcb4e52c714" width="800"></p>
 
-> **⚠️ Early Development Notice:** This project is in early development and is not yet ready for production use. Features may change, break, or be incomplete. Use at your own risk.
+|> **⚠️ Early Development Notice:** This project is in early development and is not yet ready for production use. Features may change, break, or be incomplete. Use at your own risk.
 
 A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
 
@@ -38,7 +38,7 @@ curl -fsSL https://raw.githubusercontent.com/opencode-ai/opencode/refs/heads/mai
 ### Using Homebrew (macOS and Linux)
 
 ```bash
-brew install opencode-ai/tap/opencode
+bbrew install opencode-ai/tap/opencode
 ```
 
 ### Using AUR (Arch Linux)
@@ -119,6 +119,38 @@ You can override this in your configuration file:
 
 This is useful if you want to use a different shell than your default system shell, or if you need to pass specific arguments to the shell.
 
+### Keybinding Configuration
+
+OpenCode allows you to customize keyboard shortcuts by adding a `keybindings` section to your `.opencode.json` configuration file.
+
+The following keybindings can be configured:
+
+| Action             | Config Key          | Default Shortcut |
+| ------------------ | ------------------- | ---------------- |
+| View logs          | `logs`              | `ctrl+l`         |
+| Quit application   | `quit`              | `ctrl+c`         |
+| Toggle help dialog | `help`              | `ctrl+_`         |
+| Switch session     | `switchSession`     | `ctrl+s`         |
+| Command dialog     | `commands`          | `ctrl+k`         |
+| File picker dialog | `filepicker`        | `ctrl+f`         |
+| Model dialog       | `models`            | `ctrl+o`         |
+| Switch theme       | `switchTheme`       | `ctrl+t`         |
+| Create new session | `newSession`        | `ctrl+n`         |
+| Show completion    | `showCompletionDialog`| `@`            |
+| Cancel operation   | `cancel`            | `esc`            |
+| Close dialog       | `close`             | `esc`            |
+
+Here is an example demonstrating how to override the default keybindings:
+
+```json
+{
+  "keybindings": {
+    "quit": "ctrl+q",
+    "switchSession": "ctrl+w"
+  }
+}
+```
+
 ### Configuration File Structure
 
 ```json
@@ -174,6 +206,12 @@ This is useful if you want to use a different shell than your default system she
     "go": {
       "disabled": false,
       "command": "gopls"
+    }
+  },
+  "typescript": {
+    "disabled": false,
+    "command": "typescript-language-server",
+    "args": ["--stdio"]
     }
   },
   "debug": false,
@@ -547,13 +585,17 @@ Language servers are configured in the configuration file under the `lsp` sectio
     "go": {
       "disabled": false,
       "command": "gopls"
-    },
-    "typescript": {
-      "disabled": false,
-      "command": "typescript-language-server",
-      "args": ["--stdio"]
     }
-  }
+  },
+  "typescript": {
+    "disabled": false,
+    "command": "typescript-language-server",
+    "args": ["--stdio"]
+    }
+  },
+  "debug": false,
+  "debugLSP": false,
+  "autoCompact": true
 }
 ```
 
